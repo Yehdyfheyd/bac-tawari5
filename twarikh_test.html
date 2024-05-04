@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>History Dates Quiz</h1>
+    </header>
+
+    <div class="container">
+        <div id="question">
+            <h2>Question:</h2>
+            <p id="question-text">What year did World War II end?</p>
+            <div class="answer-inputs">
+                <input type="number" id="day-input" placeholder="Day">
+                <input type="number" id="month-input" placeholder="Month">
+                <input type="number" id="year-input" placeholder="Year">
+            </div>
+            <button id="check-answer-btn" onclick="checkAnswer()">Check Answer</button>
+            <p id="result"></p>
+        </div>
+        <div id="answer">
+            <h2>Answer:</h2>
+            <p id="answer-text">May 8, 1945</p>
+        </div>
+        <button id="next-question-btn" onclick="nextQuestion()">Next Question</button>
+    </div>
+
+    <section id="section-1">
+        <!-- Content for the first section -->
+    </section>
+
+    <section id="section-2">
+        <!-- Content for the second section -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 History Dates Quiz. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+<style>
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#question, #answer {
+    margin-bottom: 20px;
+}
+
+#answer-input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#check-answer-btn, #next-question-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#check-answer-btn:hover, #next-question-btn:hover {
+    background-color: #555;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+</style>
+<script>
+const questions = [
+{
+        question: "متى كان مؤتمر يالطا؟",
+        answer: "February 4-11, 1945"
+    },
+    {
+        question: "متى كان مؤتمر بوتسدام؟",
+        answer: "July 17 - August 2, 1945"
+    },
+    {
+        question: "متى حدثت قصف هيروشيما؟",
+        answer: "August 6, 1945"
+    },
+    {
+        question: "متى تأسست الأمم المتحدة؟",
+        answer: "October 24, 1945"
+    },
+    {
+        question: "متى تم إعلان مبدأ ترومان؟",
+        answer: "March 12, 1947"
+    },
+    {
+        question: "متى تم الإعلان عن مشروع مارشال؟",
+        answer: "june 5, 1947"
+    },
+    {
+        question: "متى تم إعلان مبدأ زادانوف؟",
+        answer: "September 22, 1947"
+    },
+    {
+        question: "متى تأسست مكتب كومينفورم؟",
+        answer: "October 6, 1947"
+    },
+    {
+        question: "متى بدأت حصار برلين؟",
+        answer: "June 24, 1948"
+    },
+    {
+        question: "متى تأسست منظمة كوميكون؟",
+        answer: "January 25, 1949"
+    },
+    {
+        question: "متى رفع حصار برلين؟",
+        answer: "May 12, 1949"
+    },
+    {
+        question: "متى تأسست حلف شمال الأطلسي؟",
+        answer: "April 4, 1949"
+    },
+    {
+        question: "متى توفي ستالين؟",
+        answer: "March 5, 1953"
+    },
+    {
+        question: "متى تأسست التحالف الأمني الجنوب شرقي؟",
+        answer: "September 8, 1954"
+    },
+    {
+        question: "متى تأسست ميثاق بغداد؟",
+        answer: "February 24, 1955"
+    },
+    {
+        question: "متى كان مؤتمر باندونج؟",
+        answer: "April 18-24, 1955"
+    },
+    {
+        question: "متى تأسست ميثاق وارسو؟",
+        answer: "May 14, 1955"
+    },
+    {
+        question: "متى تم اعتقال مكتب النموذج؟",
+        answer: "June 17, 1957"
+    },
+    {
+        question: "متى حدثت العدوان الثلاثي على مصر؟",
+        answer: "October 29, 1956"
+    },
+    {
+        question: "متى تم الإعلان عن مشروع إسنور؟",
+        answer: "February 22, 1958"
+    },
+    {
+        question: "متى بدأ بناء جدار برلين؟",
+        answer: "August 13, 1961"
+    },
+    {
+        question: "متى تأسست حركة عدم الانحياز في بلغراد؟",
+        answer: "September 1-6, 1961"
+    },
+    {
+        question: "متى تأسست الخط الأحمر؟",
+        answer: "june 20,1963"
+    },
+    {
+        question: "متى تم توقيع اتفاقية ستارت 1؟",
+        answer: "July 1, 1968"
+    },
+    {
+        question: "متى كانت الأمم المتحدة النوعية الرابعة في الجزائر؟",
+        answer: "September 8-10, 1973"
+    },
+    {
+        question: "متى تم توقيع اتفاقية ستارت 2؟",
+        answer: "June 18, 1979"
+    },
+    {
+        question: "متى دخلت القوات العسكرية السوفياتية في أفغانستان؟",
+        answer: "December 27, 1979"
+    },
+    {
+        question: "متى كان مؤتمر مالطا؟",
+        answer: "December 2-3, 1989"
+    },
+    {
+        question: "متى تم تفكيك جدار برلين؟",
+        answer: "November 9, 1989"
+    },
+    {
+        question: "متى توحيد الألمانيتين؟",
+        answer: "October 3, 1990"
+    },
+    {
+        question: "متى كان مؤتمر باريس لإنهاء الحرب الباردة؟",
+        answer: "November 19-21, 1990"
+    },
+    {
+        question: "متى تم حل منظمة كوميكون؟",
+        answer: "june 28, 1991"
+    },
+    {
+        question: "متى تم حل ميثاق وارسو؟",
+        answer: "july 1, 1991"
+    },
+    {
+        question: "متى تم انهاء الاتحاد السوفيتي؟",
+        answer: "December 26, 1991"
+    },
+    {
+        question: "متى استقال غورباتشوف من منصبه؟",
+        answer: "December 25, 1991"
+    }
+];
+
+let currentQuestionIndex = 0;
+
+function showQuestion() {
+    document.getElementById("question-text").textContent = questions[currentQuestionIndex].question;
+    document.getElementById("answer-text").textContent = "";
+    document.getElementById("day-input").value = "";
+    document.getElementById("month-input").value = "";
+    document.getElementById("year-input").value = "";
+    document.getElementById("result").textContent = "";
+}
+
+function checkAnswer() {
+    const userDay = parseInt(document.getElementById("day-input").value);
+    const userMonth = parseInt(document.getElementById("month-input").value);
+    const userYear = parseInt(document.getElementById("year-input").value);
+
+    const correctDate = new Date(questions[currentQuestionIndex].answer);
+    const correctDay = correctDate.getDate();
+    const correctMonth = correctDate.getMonth() + 1; // January is 0, so add 1
+    const correctYear = correctDate.getFullYear();
+
+    if (userDay === correctDay && userMonth === correctMonth && userYear === correctYear) {
+        document.getElementById("result").textContent = "Correct!";
+    } else {
+        document.getElementById("result").textContent = "Incorrect. The correct answer is: " + questions[currentQuestionIndex].answer;
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex = Math.floor(Math.random() * questions.length);
+    showQuestion();
+}
+
+// Initial setup
+showQuestion();
+
+
+</script>
